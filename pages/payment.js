@@ -98,12 +98,12 @@ export default function Payment() {
   useEffect(main, []);
 
   return (
-    <Auth>
+    <>
       <div>Payment</div>
       <a href="solana:27j5uCqQQvRWUpkPTKow3Nwf2gvznF5FGVmt4ckF26FV?amount=20&reference=FPW3rq67dZGDFqkc8oBcVi8traPk6G5bqRwUYX6R62Jb&label=Jungle%20Cats%20store&message=Jungle%20Cats%20store%20-%20your%20order%20-%20%23001234&memo=JC%234098">
         Pay
       </a>
       <div id="qr-code"></div>
-    </Auth>
+    </>
   );
 }

@@ -1,14 +1,13 @@
-import { useState, useEffect } from "react";
-import Auth, { logout, user } from "../components/Auth";
+import { useState, useEffect, useReducer, useMemo } from "react";
+import Auth, { AuthContext, logout, user } from "../components/Auth";
+import Loading from "../components/Loading";
 
-export default function Home() {
-  const [userData, setUserData] = useState();
-
+export default function Home({ loginState }) {
   return (
-    <Auth>
-      <div>Is Logged In, {JSON.stringify(userData)}</div>
+    <>
+      <div>Is Logged In, {JSON.stringify(loginState.userData)}</div>
       <a href="/payment">Go to make Payment</a>
       <button onClick={logout}>Logout</button>
-    </Auth>
+    </>
   );
 }

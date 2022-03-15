@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import { user } from "../components/Auth";
 
-export default function CreateProfile() {
+const CreateProfile = () => {
   const [profile, setProfile] = useState({
     publicAddress: "",
     email: "",
@@ -15,7 +14,7 @@ export default function CreateProfile() {
   });
 
   useEffect(() => {
-    console.log("user", user());
+    // console.log("user", user());
     setProfile({ ...profile, publicAddress: "", email: "" });
   }, []);
   
@@ -94,3 +93,5 @@ export default function CreateProfile() {
     </div>
   );
 }
+
+export default CreateProfile;
