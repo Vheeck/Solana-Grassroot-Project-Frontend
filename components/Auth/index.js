@@ -1,10 +1,9 @@
-import { useState, useEffect, createContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Magic } from "magic-sdk";
 import Loading from "../Loading";
 import Request from "../Request";
 import { useRouter } from "next/router";
-
-const AuthContext = createContext();
+import AuthContext from "./AuthContext";
 
 const magic = () => new Magic("pk_live_DDBF3DFDD844B1E8");
 
@@ -19,22 +18,29 @@ const getProfile = async () => await Request.get("/profile");
 const checkLoginStatus = async () => {
   const isLoggedInState = await isLoggedIn();
   let publicAddress = "",
+    email = "",
     profile = null,
     isProfiled = false;
 
   if (isLoggedInState) {
-    publicAddress = await getMetadata();
+    const data = await getMetadata();
+    publicAddress = data.publicAddress;
+    email = data.email;
+
     localStorage.setItem("publicAddress", publicAddress);
 
     if (publicAddress) {
-      profile = await getProfile();
-      if (profile) {
+      const result = await getProfile();
+
+      if (result.status) {
+        profile = result.data;
         isProfiled = true;
       }
     }
   }
 
   return {
+    email,
     isLoggedIn: isLoggedInState,
     isProfiled,
     publicAddress,
@@ -61,8 +67,9 @@ const createProfile = async (profile) => {
   // const isLoggedIn = await magic().user.isLoggedIn();
   // if (isLoggedIn) {
   // const { email, publicAddress } = await magic().user.getMetadata();
-  const result = await Request.post("/create-profile", profile);
+  const result = await Request.post("/profile", profile);
   console.log(result);
+  return result;
   // }
 };
 
@@ -77,34 +84,20 @@ const Auth = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  useEffect(() => {
-    magic()
-      .user.isLoggedIn()
-      .then(async (magicIsLoggedIn) => {
-        setIsLoggedIn(magicIsLoggedIn);
-        setIsLoading(false);
-        if (magicIsLoggedIn) {
-          const metadata = await magic().user.getMetadata();
-          localStorage.setItem("publicAddress", metadata.publicAddress);
-
-          const profile = await getProfile();
-          if (profile.status) router.push("/create-profile");
-        }
-      });
-  }, [isLoggedIn]);
+  const { signIn, signOut } = useContext(AuthContext);
 
   // Make a request
   const login = async () => {
     // Initialize magic client
     await magic().auth.loginWithMagicLink({ email });
-    setIsLoggedIn(true);
-    setIsLoading(false);
+    const data = await checkLoginStatus();
+    signIn(data);
   };
 
   const logout = async () => {
     await magic().user.logout();
-    setIsLoggedIn(false);
-    setIsLoading(false);
+    localStorage.removeItem("publicAddress");
+    signOut();
   };
 
   return (

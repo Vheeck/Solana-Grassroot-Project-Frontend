@@ -10,6 +10,7 @@ function MyApp({ Component, pageProps }) {
   const router = useRouter();
 
   const initialLoginState = {
+    email: "",
     isLoading: true,
     isLoggedIn: false,
     isProfiled: false,
@@ -27,6 +28,7 @@ function MyApp({ Component, pageProps }) {
           isProfiled: action.isProfiled,
           profile: action.profile,
           publicAddress: action.publicAddress,
+          email: action.email,
         };
       case "LOGIN":
         return {
@@ -53,15 +55,17 @@ function MyApp({ Component, pageProps }) {
 
   const authContext = useMemo(
     () => ({
-      signIn: (userData) => {
-        dispatch({ type: "LOGIN", userData: userData });
+      signIn: (data) => {
+        dispatch({ type: "LOGIN", ...data });
+      },
+      profileCreated: (data) => {
+        dispatch({ type: "RETRIEVE_TOKEN", ...data });
       },
       signOut: () => {
-        localStorage.removeItem("publicAddress");
-        dispatch({ type: "LOGOUT" });
+        dispatch({ type: "LOGOUT", ...initialLoginState });
       },
-      signUp: (userData) => {
-        dispatch({ type: "REGISTER", userData: userData });
+      signUp: (data) => {
+        dispatch({ type: "REGISTER", ...data });
       },
     }),
     []
@@ -70,28 +74,39 @@ function MyApp({ Component, pageProps }) {
   useEffect(() => {
     setTimeout(async () => {
       const data = await checkLoginStatus();
+      console.log("data", data)
       dispatch({
         type: "RETRIEVE_TOKEN",
         ...data,
       });
-    }, 1000);
+    }, 1);
   }, []);
+
+  useEffect(() => {
+    console.log(loginState);
+  }, [loginState]);
 
   if (loginState.isLoading) {
     return <Loading />;
   }
 
   if (!loginState.isLoggedIn) {
-    return <Auth />;
+    return (
+      <AuthContext.Provider value={authContext}>
+        <Auth />
+      </AuthContext.Provider>
+    );
   }
 
+  const { publicAddress, email, profile } = loginState;
+
   if (!loginState.isProfiled) {
-    return <CreateProfile />;
+    return <CreateProfile {...{ publicAddress, email }} />;
   }
 
   return (
     <AuthContext.Provider value={authContext}>
-      <Component {...pageProps} profile={loginState.profile} />
+      <Component {...pageProps} profile={profile} />
     </AuthContext.Provider>
   );
 }

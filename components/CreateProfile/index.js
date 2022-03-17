@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { AuthContext, createProfile } from "../Auth";
 
-const CreateProfile = () => {
+const CreateProfile = ({ email, publicAddress }) => {
   const [profile, setProfile] = useState({
-    publicAddress: "",
-    email: "",
+    email,
     phone: "",
     firstName: "",
     lastName: "",
@@ -13,13 +13,44 @@ const CreateProfile = () => {
     photo: "",
   });
 
+  const [isLoading, setIsLoading] = useState(false);
+
+  const { profileCreated } = useContext(AuthContext);
+
   useEffect(() => {
     // console.log("user", user());
-    setProfile({ ...profile, publicAddress: "", email: "" });
+    // setProfile({ ...profile, publicAddress: "", email: "" });
   }, []);
-  
+
+  const submitForm = async () => {
+    setIsLoading(true);
+
+    const { email, phone, firstName, lastName, dob, bvn, ssn, photo } = profile;
+
+    if (
+      !firstName ||
+      !lastName ||
+      !email ||
+      !phone ||
+      !dob ||
+      (!bvn && !ssn) ||
+      !photo
+    ) {
+      return alert("Error");
+    }
+
+    const result = await createProfile(profile);
+
+    if (result.status == true) {
+      profileCreated(await checkLoginStatus());
+    }
+
+    setIsLoading(false);
+  };
+
   return (
     <div>
+      <h2>Create Profile</h2>
       <div>
         <input
           type="text"
@@ -44,6 +75,7 @@ const CreateProfile = () => {
           name="email"
           placeholder="Email Address"
           disabled
+          value={email}
           onChange={(e) => setProfile({ ...profile, email: e.target.value })}
         />
       </div>
@@ -80,18 +112,30 @@ const CreateProfile = () => {
         />
       </div>
       <div>
+        <img src={profile.photo} />
         <input
           type="file"
           name="photo"
-          onChange={(e) => console.log(e.target)}
+          onChange={(e) => {
+            const image = e.target.files[0];
+
+            const reader = new FileReader();
+            reader.readAsDataURL(image);
+            reader.onload = (event) => {
+              console.log(event.target.result);
+              setProfile({ ...profile, photo: event.target.result });
+            };
+          }}
         />
       </div>
       <div>
-        <button>Save</button>
+        <button disabled={isLoading} onClick={() => submitForm()}>
+          {isLoading ? "Loading" : "Save"}
+        </button>
       </div>
-      <div>{JSON.stringify(profile)}</div>
+      <div>{JSON.stringify(profile, null, 4)}</div>
     </div>
   );
-}
+};
 
 export default CreateProfile;

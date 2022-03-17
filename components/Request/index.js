@@ -1,7 +1,7 @@
 const backendServerAddress = "http://localhost:5000";
 
 const sendRequest = (endpoint, type, body) => {
-  const publicAddress = JSON.parse(localStorage.getItem("publicAddress"));
+  const publicAddress = localStorage.getItem("publicAddress");
   
   let headers = {
     "Content-Type": "application/json",
