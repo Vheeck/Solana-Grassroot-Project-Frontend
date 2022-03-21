@@ -1,4 +1,4 @@
-const backendServerAddress = "http://localhost:5000";
+const backendServerAddress = process.env.NEXT_PUBLIC_API_ENPOINT;
 
 const sendRequest = (endpoint, type, body, headers) => {
   const custom = endpoint.indexOf("http") === 0;
