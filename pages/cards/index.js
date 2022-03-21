@@ -35,8 +35,8 @@ export default function Cards() {
               </tr>
             </thead>
             <tbody>
-              {cards.map(({ createdAt, details, balance }) => (
-                <tr>
+              {cards.map(({ createdAt, details, balance }, i) => (
+                <tr key={i}>
                   <td>{createdAt}</td>
                   <td>{JSON.stringify(details)}</td>
                   {/* <td>{balance}</td> */}

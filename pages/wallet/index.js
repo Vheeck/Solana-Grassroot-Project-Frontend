@@ -50,8 +50,8 @@ export default function Wallet({ profile }) {
             </tr>
           </thead>
           <tbody>
-            {wallet.history.map(({ dateTime, action, balance }) => (
-              <tr>
+            {wallet.history.map(({ dateTime, action, balance }, i) => (
+              <tr key={i}>
                 <td>{dateTime}</td>
                 <td>{action}</td>
                 <td>{balance}</td>

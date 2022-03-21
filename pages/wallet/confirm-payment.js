@@ -75,7 +75,7 @@ export default function ConfirmPayment() {
         <h3>Scan QR Code to make payment</h3>
         <div id="qr-code"></div>
         <h3>OR</h3>
-        <p>Click the 'Pay' button</p>
+        <p>Click the &apos;Pay&apos; button</p>
         <a href={url}>
           <button>Pay</button>
         </a>

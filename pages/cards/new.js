@@ -141,9 +141,9 @@ export default function NewCard() {
               <option>Loading...</option>
             ) : (
               [
-                <option>Select ID Type</option>,
-                ...Object.keys(idTypes).map((key) => (
-                  <option value={idTypes[key]}>{key.toUpperCase()}</option>
+                <option key={0}>Select ID Type</option>,
+                ...Object.keys(idTypes).map((key, i) => (
+                  <option value={idTypes[key]} key={i+1}>{key.toUpperCase()}</option>
                 )),
               ]
             )}
@@ -211,9 +211,9 @@ export default function NewCard() {
               <option>Loading...</option>
             ) : (
               [
-                <option>Select State</option>,
-                ...states.map(({ state: { id, name } }) => (
-                  <option value={id}>{name}</option>
+                <option key={0}>Select State</option>,
+                ...states.map(({ state: { id, name } }, i) => (
+                  <option value={id} key={i+1}>{name}</option>
                 )),
               ]
             )}
@@ -230,13 +230,13 @@ export default function NewCard() {
               <option>Loading...</option>
             ) : (
               [
-                <option>Select LGA</option>,
+                <option key={0}>Select LGA</option>,
 
                 ...(data.stateId
                   ? states
                       .filter(({ state: { id } }, i) => id == data.stateId)[0]
-                      .state.locals.map(({ name, id }) => (
-                        <option value={id}>{name}</option>
+                      .state.locals.map(({ name, id }, i) => (
+                        <option value={id} key={i+1}>{name}</option>
                       ))
                   : []),
               ]
