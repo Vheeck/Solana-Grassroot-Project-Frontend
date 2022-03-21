@@ -1,14 +1,14 @@
 const backendServerAddress = "http://localhost:5000";
 
-const sendRequest = (endpoint, type, body) => {
-  const publicAddress = localStorage.getItem("publicAddress");
-  
-  let headers = {
-    "Content-Type": "application/json",
-  };
+const sendRequest = (endpoint, type, body, headers) => {
+  const custom = endpoint.indexOf("http") === 0;
 
-  if (publicAddress) {
-    headers.Authorization = publicAddress;
+  if (!custom) {
+    const publicAddress = localStorage.getItem("publicAddress");
+    headers = { ...headers, "Content-Type": "application/json" };
+    if (publicAddress) {
+      headers.Authorization = publicAddress;
+    }
   }
 
   let init = {
@@ -21,13 +21,14 @@ const sendRequest = (endpoint, type, body) => {
     init.body = JSON.stringify(body);
   }
 
-  return fetch(`${backendServerAddress}${endpoint}`, init);
+  return fetch(`${custom ? "" : backendServerAddress}${endpoint}`, init);
 };
 
 const Request = {
-  post: async (endpoint, body) =>
-    (await sendRequest(endpoint, "POST", body)).json(),
-  get: async (endpoint) => (await sendRequest(endpoint, "GET", false)).json(),
+  post: async (endpoint, body, headers = {}) =>
+    (await sendRequest(endpoint, "POST", body, headers)).json(),
+  get: async (endpoint, headers = {}) =>
+    (await sendRequest(endpoint, "GET", false, headers)).json(),
 };
 
 export default Request;
