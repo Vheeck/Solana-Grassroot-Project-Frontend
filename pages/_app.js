@@ -74,7 +74,7 @@ function MyApp({ Component, pageProps }) {
   useEffect(() => {
     setTimeout(async () => {
       const data = await checkLoginStatus();
-      console.log("data", data)
+      console.log("data", data);
       dispatch({
         type: "RETRIEVE_TOKEN",
         ...data,
@@ -101,7 +101,11 @@ function MyApp({ Component, pageProps }) {
   const { publicAddress, email, profile } = loginState;
 
   if (!loginState.isProfiled) {
-    return <CreateProfile {...{ publicAddress, email }} />;
+    return (
+      <AuthContext.Provider value={authContext}>
+        <CreateProfile {...{ publicAddress, email }} />
+      </AuthContext.Provider>
+    );
   }
 
   return (
