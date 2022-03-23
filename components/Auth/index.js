@@ -4,6 +4,8 @@ import Loading from "../Loading";
 import Request from "../Request";
 import { useRouter } from "next/router";
 import AuthContext from "./AuthContext";
+import WavesSVG from "../WavesSVG";
+import Header from "../Header";
 
 const magic = () => new Magic("pk_live_DDBF3DFDD844B1E8");
 
@@ -81,17 +83,19 @@ const Auth = ({ children }) => {
   const router = useRouter();
 
   const [email, setEmail] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const { signIn, signOut } = useContext(AuthContext);
 
   // Make a request
   const login = async () => {
+    setIsLoading(true);
     // Initialize magic client
     await magic().auth.loginWithMagicLink({ email });
     const data = await checkLoginStatus();
     signIn(data);
+    setIsLoading(false);
   };
 
   const logout = async () => {
@@ -101,35 +105,43 @@ const Auth = ({ children }) => {
   };
 
   return (
-    <div>
-      <div>
-        <input
-          name="email"
-          type="email"
-          placeholder="Email Address"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <button onClick={login}>Login</button>
-        {/* <button
-          onClick={() =>
-            createProfile({
-              publicAddress: "string",
-              email: "string",
-              phone: "string",
-              firstName: "string",
-              lastName: "string",
-              dob: "string",
-              bvn: "string",
-              ssn: "string",
-              photo: "string",
-            })
-          }
-        >
-          Test create profile
-        </button> */}
+    <>
+      <Header />
+      <WavesSVG />
+
+      <div className="card card-style">
+        <div className="content">
+          <h1 className="mb-0 pt-2">Login</h1>
+          <p>Fill In Your Email Address</p>
+          <div className="form-custom form-label form-border form-icon mb-3 bg-transparent">
+            <i className="bi bi-at font-16"></i>
+            <input
+              name="email"
+              type="email"
+              className="form-control rounded-xs"
+              id="c1"
+              placeholder="Email Address"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <label for="c1" className="color-theme">
+              Email Address
+            </label>
+            <span>(required)</span>
+          </div>
+          <button
+          disabled={isLoading}
+            onClick={login}
+            className="btn btn-full gradient-highlight shadow-bg shadow-bg-s mt-4"
+            style={{
+              width: "100%",
+            }}
+          >
+            {isLoading ? "Loading" : "Login"}
+          </button>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
