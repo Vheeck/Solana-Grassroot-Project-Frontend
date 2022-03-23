@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { AuthContext, createProfile } from "../Auth";
+import { AuthContext, createProfile, checkLoginStatus } from "../Auth";
 
 const CreateProfile = ({ email, publicAddress }) => {
   const [profile, setProfile] = useState({
