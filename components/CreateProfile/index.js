@@ -109,7 +109,7 @@ const CreateProfile = ({ email, publicAddress }) => {
               className="form-control rounded-xs"
               id="c1"
             />
-            <label for="c1" className="color-theme">
+            <label htmlFor="c1" className="color-theme">
               Username
             </label>
             <span>(required)</span>
@@ -126,7 +126,7 @@ const CreateProfile = ({ email, publicAddress }) => {
               className="form-control rounded-xs"
               id="c1"
             />
-            <label for="c1" className="color-theme">
+            <label htmlFor="c1" className="color-theme">
               Username
             </label>
             <span>(required)</span>
@@ -145,7 +145,7 @@ const CreateProfile = ({ email, publicAddress }) => {
                 setProfile({ ...profile, email: e.target.value })
               }
             />
-            <label for="c1" className="color-theme">
+            <label htmlFor="c1" className="color-theme">
               Email Address
             </label>
             <span>(required)</span>
@@ -163,7 +163,7 @@ const CreateProfile = ({ email, publicAddress }) => {
               className="form-control rounded-xs"
               id="c1"
             />
-            <label for="c1" className="color-theme">
+            <label htmlFor="c1" className="color-theme">
               Phone Number
             </label>
             <span>(required)</span>
@@ -179,7 +179,7 @@ const CreateProfile = ({ email, publicAddress }) => {
               className="form-control rounded-xs"
               id="c1"
             />
-            <label for="c1" className="color-theme">
+            <label htmlFor="c1" className="color-theme">
               Phone Number
             </label>
             <span>(required)</span>
@@ -195,7 +195,7 @@ const CreateProfile = ({ email, publicAddress }) => {
               className="form-control rounded-xs"
               id="c1"
             />
-            <label for="c1" className="color-theme">
+            <label htmlFor="c1" className="color-theme">
               Phone Number
             </label>
             <span>(required)</span>
@@ -211,7 +211,7 @@ const CreateProfile = ({ email, publicAddress }) => {
               className="form-control rounded-xs"
               id="c1"
             />
-            <label for="c1" className="color-theme">
+            <label htmlFor="c1" className="color-theme">
               Phone Number
             </label>
             <span>(required)</span>
@@ -257,7 +257,7 @@ const CreateProfile = ({ email, publicAddress }) => {
               value=""
               id="c2a"
             />
-            <label className="form-check-label font-12" for="c2a">
+            <label className="form-check-label font-12" htmlFor="c2a">
               I agree with the <a href="#">Terms and Conditions</a>.
             </label>
             <i className="is-checked color-highlight font-13 bi bi-check-circle-fill"></i>

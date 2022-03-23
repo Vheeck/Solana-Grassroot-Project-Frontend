@@ -124,7 +124,7 @@ const Auth = ({ children }) => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <label for="c1" className="color-theme">
+            <label htmlFor="c1" className="color-theme">
               Email Address
             </label>
             <span>(required)</span>
