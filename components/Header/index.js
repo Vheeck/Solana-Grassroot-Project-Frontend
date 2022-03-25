@@ -6,14 +6,14 @@ const Header = () => (
         <h1 className="color-white">Grassroots</h1>
       </div>
       <div className="align-self-center ms-auto">
-        <a
+        {/* <a
           href="#"
           data-bs-toggle="offcanvas"
           data-bs-target="#menu-sidebar"
           className="icon bg-white rounded-m"
         >
           <i className="bi bi-list font-20"></i>
-        </a>
+        </a> */}
       </div>
     </div>
   </div>

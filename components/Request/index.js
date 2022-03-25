@@ -1,4 +1,4 @@
-const backendServerAddress = process.env.NEXT_PUBLIC_API_ENPOINT;
+const backendServerAddress = process.env.NEXT_PUBLIC_API_ENDPOINT;
 
 const sendRequest = (endpoint, type, body, headers) => {
   const custom = endpoint.indexOf("http") === 0;
@@ -20,6 +20,8 @@ const sendRequest = (endpoint, type, body, headers) => {
   if (body) {
     init.body = JSON.stringify(body);
   }
+
+  console.log("custom url", custom, init, backendServerAddress, endpoint);
 
   return fetch(`${custom ? "" : backendServerAddress}${endpoint}`, init);
 };

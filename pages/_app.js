@@ -1,4 +1,7 @@
-import "../styles/globals.css";
+// import "../styles/globals.css";
+import "../public/styles/bootstrap.css";
+import "../public/fonts/bootstrap-icons.css";
+import "../public/styles/style.css";
 
 import Head from "next/head";
 import Script from "next/script";
@@ -9,6 +12,8 @@ import { useRouter } from "next/router";
 import Auth, { AuthContext, checkLoginStatus } from "../components/Auth";
 import Loading from "../components/Loading";
 import CreateProfile from "../components/CreateProfile";
+import Image from "next/image";
+import Link from "next/link";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
@@ -85,19 +90,19 @@ function MyApp({ Component, pageProps }) {
       });
     }, 1);
 
-    document.body.className = "theme-light";
+    // document.body.className = "theme-light";
     document.querySelector("#page").style.display = "block";
 
-    const script = (src) => {
-      const script = document.createElement("script");
-      script.src = src;
-      return script;
-    };
+    // const script = (src) => {
+    //   const script = document.createElement("script");
+    //   script.src = src;
+    //   return script;
+    // };
 
-    document.body.append(
-      script("scripts/bootstrap.min.js"),
-      script("scripts/custom.js")
-    );
+    // document.body.append(
+    //   script("scripts/bootstrap.min.js"),
+    //   script("scripts/custom.js")
+    // );
   }, []);
 
   useEffect(() => {
@@ -109,42 +114,28 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta
-          name="apple-mobile-web-app-status-bar-style"
-          content="black-translucent"
-        />
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover"
-        />
         <title>Grassroots</title>
-        <link rel="stylesheet" type="text/css" href="styles/bootstrap.css" />
-        <link
+        {/* <link rel="stylesheet" type="text/css" href="styles/bootstrap.css" /> */}
+        {/* <link
           rel="stylesheet"
           type="text/css"
           href="fonts/bootstrap-icons.css"
-        />
-        <link rel="stylesheet" type="text/css" href="styles/style.css" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        /> */}
+        {/* <link rel="stylesheet" type="text/css" href="styles/style.css" /> */}
+        {/* <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
           href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@500;600;700&family=Roboto:wght@400;500;700&display=swap"
           rel="stylesheet"
-        />
-        <link rel="manifest" href="_manifest.json" />
+        /> */}
+        {/* <link rel="manifest" href="_manifest.json" />
         <meta id="theme-check" name="theme-color" content="#FFFFFF" />
         <link
           rel="apple-touch-icon"
           sizes="180x180"
           href="app/icons/icon-192x192.png"
-        />
+        /> */}
       </Head>
-      {loginState.isLoading ? (
-        <Loading />
-      ) : (
-        ""
-      )}
+      {loginState.isLoading ? <Loading /> : ""}
 
       <div id="page">
         <MainTheme>
@@ -163,6 +154,9 @@ function MyApp({ Component, pageProps }) {
           )}
         </MainTheme>
       </div>
+
+      <Script src="/scripts/bootstrap.min.js" />
+      <Script src="/scripts/custom.js" />
     </>
   );
 }
@@ -170,29 +164,221 @@ function MyApp({ Component, pageProps }) {
 const MainTheme = ({ children }) => (
   <>
     <div id="footer-bar" className="footer-bar-1 footer-bar-detached">
-      <a href="page-wallet.html">
-        <i className="bi bi-wallet2"></i>
-        <span>Cards</span>
-      </a>
-      <a href="page-activity.html">
-        <i className="bi bi-graph-up"></i>
-        <span>Activity</span>
-      </a>
-      <a href="index-waves.html" className="circle-nav-2">
-        <i className="bi bi-house-fill"></i>
-        <span>Home</span>
-      </a>
-      <a href="page-payments.html">
-        <i className="bi bi-receipt"></i>
-        <span>Payments</span>
-      </a>
-      <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar">
-        <i className="bi bi-three-dots"></i>
-        <span>More</span>
-      </a>
+      <Link href="/cards" passHref>
+        <a>
+          <i className="bi bi-credit-card"></i>
+          <span>Cards</span>
+        </a>
+      </Link>
+      <Link href="/wallet" passHref>
+        <a>
+          <i className="bi bi-wallet2"></i>
+          <span>Wallet</span>
+        </a>
+      </Link>
+      <Link href="/" passHref>
+        <a className="circle-nav-2">
+          <i className="bi bi-house-fill"></i>
+          <span>Home</span>
+        </a>
+      </Link>
+      <Link href="/invest" passHref>
+        <a>
+          <i className="bi bi-cash-coin"></i>
+          <span>Invest</span>
+        </a>
+      </Link>
+      <Link href="/profile" passHref>
+        {/* <a data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"> */}
+        <a>
+          <i className="bi bi-person"></i>
+          <span>Profile</span>
+        </a>
+      </Link>
     </div>
 
     <div className="page-content footer-clear">{children}</div>
+
+    <div id="menu-information" className="offcanvas offcanvas-start">
+      <div style={{ width: "100vw" }}>
+        <div className="pt-3">
+          <div className="page-title d-flex">
+            <div className="align-self-center">
+              <a
+                href="#"
+                data-bs-dismiss="offcanvas"
+                className="me-3 ms-0 icon icon-xxs bg-theme rounded-s shadow-m"
+              >
+                <i className="bi bi-chevron-left color-theme font-14"></i>
+              </a>
+            </div>
+            <div className="align-self-center me-auto">
+              <h1 className="color-theme mb-0 font-18">Back to Profile</h1>
+            </div>
+            <div className="align-self-center ms-auto">
+              <a
+                href="#"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#menu-sidebar"
+                className="icon icon-xxs gradient-highlight color-white shadow-bg shadow-bg-xs rounded-s"
+              >
+                <i className="bi bi-list font-20"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="content mt-0">
+          <h5 className="pb-3 pt-4">Personal Information</h5>
+          <div className="form-custom form-label form-border mb-3 bg-transparent">
+            <input
+              type="text"
+              className="form-control rounded-xs"
+              id="c1a"
+              placeholder="nick.user.name"
+            />
+            <label
+              htmlFor="c1a"
+              className="form-label-always-active color-highlight"
+            >
+              Username
+            </label>
+            <span>(required)</span>
+          </div>
+          <div className="form-custom form-label form-border mb-3 bg-transparent">
+            <input
+              type="text"
+              className="form-control rounded-xs"
+              id="c1ab"
+              placeholder="John"
+            />
+            <label
+              htmlFor="c1ab"
+              className="form-label-always-active color-highlight"
+            >
+              First Name
+            </label>
+            <span>(required)</span>
+          </div>
+          <div className="form-custom form-label form-border mb-3 bg-transparent">
+            <input
+              type="text"
+              className="form-control rounded-xs"
+              id="c1abc"
+              placeholder="Doeson"
+            />
+            <label
+              htmlFor="c1abc"
+              className="form-label-always-active color-highlight"
+            >
+              Last Name
+            </label>
+            <span>(required)</span>
+          </div>
+          <div className="form-custom form-label form-border mb-3 bg-transparent">
+            <input
+              type="text"
+              className="form-control rounded-xs"
+              id="c1abcd"
+              placeholder="1 Apple Street, California, USA"
+            />
+            <label
+              htmlFor="c1abcd"
+              className="form-label-always-active color-highlight"
+            >
+              Address
+            </label>
+            <span>(required)</span>
+          </div>
+          <div className="form-custom form-label form-border mb-3 bg-transparent">
+            <input
+              type="email"
+              className="form-control rounded-xs"
+              id="c1"
+              placeholder="name@domain.com"
+            />
+            <label
+              htmlFor="c1"
+              className="color-highlight form-label-always-active"
+            >
+              Email Address
+            </label>
+            <span>(required)</span>
+          </div>
+
+          <h5 className="pb-3 pt-4">Default Settings</h5>
+          <div className="form-custom form-label form-border form-icon">
+            <i className="bi bi-calendar font-13"></i>
+            <label
+              htmlFor="c6a"
+              className="color-highlight form-label-always-active"
+            >
+              Default Account
+            </label>
+            <select className="form-select rounded-xs" id="c6a">
+              <option value="0" selected>
+                Main Account
+              </option>
+              <option value="01">Savings Account</option>
+              <option value="02">Company Account</option>
+            </select>
+          </div>
+
+          <h5 className="pb-3 pt-4">Account Security</h5>
+          <div className="form-custom form-label form-border mb-3 bg-transparent">
+            <input
+              type="tel"
+              className="form-control rounded-xs"
+              id="c21"
+              value="+1 234 567 809"
+            />
+            <label
+              htmlFor="c21"
+              className="color-highlight form-label-always-active"
+            >
+              Phone Number
+            </label>
+            <span>(required)</span>
+          </div>
+          <div className="form-custom form-label form-border mb-3 bg-transparent">
+            <input
+              type="password"
+              className="form-control rounded-xs"
+              id="c2"
+              value="Old Password"
+            />
+            <label
+              htmlFor="c2"
+              className="color-highlight form-label-always-active"
+            >
+              Current Password
+            </label>
+            <span>(required)</span>
+          </div>
+          <div className="form-custom form-label form-border mb-4 bg-transparent">
+            <input
+              type="password"
+              className="form-control rounded-xs"
+              id="c3"
+              value="New Password"
+            />
+            <label
+              htmlFor="c3"
+              className="color-highlight form-label-always-active"
+            >
+              New Password
+            </label>
+            <span>(required)</span>
+          </div>
+          <a
+            href="#"
+            data-bs-dismiss="offcanvas"
+            className="btn btn-full gradient-highlight shadow-bg shadow-bg-s mt-4"
+          >
+            Apply Settings
+          </a>
+        </div>
+      </div>
+    </div>
 
     <div
       id="menu-sidebar"
@@ -247,10 +433,11 @@ const MainTheme = ({ children }) => (
       id="menu-install-pwa-ios"
     >
       <div className="content">
-        <img
-          src="app/icons/icon-128x128.png"
+        <Image
+          src="/app/icons/icon-128x128.png"
           alt="img"
-          width="80"
+          width={80}
+          height={80}
           className="rounded-m mx-auto my-4"
         />
         <h1 className="text-center">Install PayApp</h1>
@@ -273,10 +460,11 @@ const MainTheme = ({ children }) => (
       id="menu-install-pwa-android"
     >
       <div className="content">
-        <img
-          src="app/icons/icon-128x128.png"
+        <Image
+          src="/app/icons/icon-128x128.png"
           alt="img"
-          width="80"
+          width={80}
+          height={80}
           className="rounded-m mx-auto my-4"
         />
         <h1 className="text-center">Install PayApp</h1>

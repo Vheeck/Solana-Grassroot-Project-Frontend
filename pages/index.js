@@ -7,12 +7,16 @@ import Header from "../components/Header";
 import WavesSVG from "../components/WavesSVG";
 import getSlides from "../components/Splide";
 import { formatMoney } from "../components/FormatMoney";
+import { solToNaira } from "./wallet/fund";
 
 export default function Home({ profile }) {
   const [cards, setCards] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  const [wallet, setWallet] = useState(null);
+
   useEffect(() => {
+    getWallet();
     getSlides();
     getCards();
   }, []);
@@ -21,6 +25,12 @@ export default function Home({ profile }) {
     setTimeout(getSlides, 500);
     // getSlides();
   }, [cards]);
+
+  const getWallet = async () => {
+    const result = await Request.get("/wallet");
+    console.log(result);
+    setWallet(result.data);
+  };
 
   const getCards = async () => {
     setIsLoading(true);
@@ -35,10 +45,45 @@ export default function Home({ profile }) {
       <Header />
       <WavesSVG />
 
+      <div className="card card-style gradient-green shadow-bg shadow-bg-s">
+        <div className="content">
+          <Link href="/wallet" passHref>
+            <a className="d-flex">
+              <div className="align-self-center">
+                <h1 className="mb-0 font-40">
+                  <i className="bi bi-wallet2 color-white pe-3"></i>
+                </h1>
+              </div>
+              <div className="align-self-center">
+                <h5 className="color-white font-700 mb-0 mt-0">
+                  {wallet ? `${wallet.balance} SOL (${formatMoney(wallet.balance * solToNaira, true)})` : "Loading..."}
+                </h5>
+                <h6 className="color-white font-700 mb-0 mt-0">Wallet Balanace</h6>
+              </div>
+            </a>
+          </Link>
+        </div>
+      </div>
       {isLoading ? (
-        <p>Loading...</p>
-      ) : !cards ? (
-        <p>You have no cards yet.</p>
+        <p
+          style={{
+            position: "inherit",
+            color: "white",
+            textAlign: "center",
+          }}
+        >
+          Loading...
+        </p>
+      ) : !cards.length ? (
+        <p
+          style={{
+            position: "inherit",
+            color: "white",
+            textAlign: "center",
+          }}
+        >
+          You have no cards yet.
+        </p>
       ) : (
         <div
           className="splide single-slider slider-no-dots slider-no-arrows slider-visible"
@@ -228,26 +273,6 @@ export default function Home({ profile }) {
               View All
             </a>
           </div>
-        </div>
-      </div>
-
-      <div className="card card-style gradient-green shadow-bg shadow-bg-s">
-        <div className="content">
-          <a href="page-activity.html" className="d-flex">
-            <div className="align-self-center">
-              <h1 className="mb-0 font-40">
-                <i className="bi bi-check-circle color-white pe-3"></i>
-              </h1>
-            </div>
-            <div className="align-self-center">
-              <h5 className="color-white font-700 mb-0 mt-0 pt-1">
-                Withdrawal of funds to your <br /> Account has been successful.
-              </h5>
-            </div>
-            <div className="align-self-center ms-auto">
-              <i className="bi bi-arrow-right-short color-white d-block pt-1 font-20 opacity-50"></i>
-            </div>
-          </a>
         </div>
       </div>
     </>

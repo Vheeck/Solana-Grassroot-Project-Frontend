@@ -75,7 +75,17 @@ const createProfile = async (profile) => {
   // }
 };
 
-export { AuthContext, checkLoginStatus, getUserData, logout, createProfile };
+const editProfile = async (profile) => {
+  // const isLoggedIn = await magic().user.isLoggedIn();
+  // if (isLoggedIn) {
+  // const { email, publicAddress } = await magic().user.getMetadata();
+  const result = await Request.post("/profile/edit", profile);
+  console.log(result);
+  return result;
+  // }
+};
+
+export { AuthContext, checkLoginStatus, getUserData, logout, createProfile, editProfile };
 
 // const user
 
