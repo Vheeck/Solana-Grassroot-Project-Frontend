@@ -1,7 +1,7 @@
 // import "../styles/globals.css";
-import "../public/styles/bootstrap.css";
-import "../public/fonts/bootstrap-icons.css";
-import "../public/styles/style.css";
+// import "../public/styles/bootstrap.css";
+// import "../public/fonts/bootstrap-icons.css";
+// import "../public/styles/style.css";
 
 import Head from "next/head";
 import Script from "next/script";
@@ -115,13 +115,13 @@ function MyApp({ Component, pageProps }) {
     <>
       <Head>
         <title>Grassroots</title>
-        {/* <link rel="stylesheet" type="text/css" href="styles/bootstrap.css" /> */}
-        {/* <link
+        <link rel="stylesheet" type="text/css" href="styles/bootstrap.css" />
+        <link
           rel="stylesheet"
           type="text/css"
           href="fonts/bootstrap-icons.css"
-        /> */}
-        {/* <link rel="stylesheet" type="text/css" href="styles/style.css" /> */}
+        />
+        <link rel="stylesheet" type="text/css" href="styles/style.css" />
         {/* <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
           href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@500;600;700&family=Roboto:wght@400;500;700&display=swap"
