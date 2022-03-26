@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect, useReducer, useMemo } from "react";
+import { useState, useEffect, useReducer, useMemo, useContext } from "react";
 import Auth, { AuthContext, logout, user } from "../../components/Auth";
 import Loading from "../../components/Loading";
 import WavesSVG from "../../components/WavesSVG";
