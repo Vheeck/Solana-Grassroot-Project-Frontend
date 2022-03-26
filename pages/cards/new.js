@@ -16,7 +16,7 @@ export default function NewCard() {
     amount: "",
     firstName: "",
     lastName: "",
-    email: "",
+    email: "info@grader.ng",
     nameOnCard: "",
     dob: "",
     idNo: "",
@@ -187,7 +187,7 @@ export default function NewCard() {
                 </label>
               </div>
             </div>
-            <div className="col-12">
+            {/* <div className="col-12">
               <div className="form-custom form-label form-icon mb-3">
                 <i className="bi bi-envelope font-14"></i>
                 <input
@@ -205,7 +205,7 @@ export default function NewCard() {
                   Email Address
                 </label>
               </div>
-            </div>
+            </div> */}
             <div className="col-12">
               <div className="form-custom form-label form-icon mb-3">
                 <i className="bi bi-telephone font-14"></i>

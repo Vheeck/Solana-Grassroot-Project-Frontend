@@ -1,9 +1,12 @@
+import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext, checkLoginStatus, editProfile } from "../../components/Auth";
 import Header from "../../components/Header";
 import WavesSVG from "../../components/WavesSVG";
 
 export default function EditProfile(props) {
+  const router = useRouter();
+
   const [profile, setProfile] = useState(props.profile);
 
   const [isLoading, setIsLoading] = useState(false);
@@ -36,9 +39,11 @@ export default function EditProfile(props) {
 
     if (result.status == true) {
       profileCreated(await checkLoginStatus());
+      router.push("/profile");
     }
 
     setIsLoading(false);
+
   };
 
   return (

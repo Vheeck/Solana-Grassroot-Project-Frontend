@@ -29,35 +29,25 @@ function MyApp({ Component, pageProps }) {
   };
 
   const loginReducer = (prevState, action) => {
+    const newData = {
+      ...prevState,
+      isLoading: false,
+      isLoggedIn: action.isLoggedIn,
+      isProfiled: action.isProfiled,
+      profile: action.profile,
+      publicAddress: action.publicAddress,
+      email: action.email,
+    };
+
     switch (action.type) {
       case "RETRIEVE_TOKEN":
-        return {
-          ...prevState,
-          isLoading: false,
-          isLoggedIn: action.isLoggedIn,
-          isProfiled: action.isProfiled,
-          profile: action.profile,
-          publicAddress: action.publicAddress,
-          email: action.email,
-        };
+        return newData;
       case "LOGIN":
-        return {
-          ...prevState,
-          userData: action.userData,
-          isLoading: false,
-        };
+        return newData;
       case "LOGOUT":
-        return {
-          ...prevState,
-          userData: null,
-          isLoading: false,
-        };
+        return newData;
       case "REGISTER":
-        return {
-          ...prevState,
-          userData: action.userData,
-          isLoading: false,
-        };
+        return newData;
     }
   };
 
