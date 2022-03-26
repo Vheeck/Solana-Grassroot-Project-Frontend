@@ -63,7 +63,11 @@ const getUserData = async () => {
   }
 };
 
-const logout = () => magic().user.logout();
+const logout = async (callback) => {
+  magic().user.logout();
+  localStorage.removeItem("publicAddress");
+  callback();
+};
 
 const createProfile = async (profile) => {
   // const isLoggedIn = await magic().user.isLoggedIn();

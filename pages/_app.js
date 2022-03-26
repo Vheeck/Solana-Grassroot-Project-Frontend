@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-css-tags */
 // import "../styles/globals.css";
 // import "../public/styles/bootstrap.css";
 // import "../public/fonts/bootstrap-icons.css";

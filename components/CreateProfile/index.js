@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { useState, useEffect, useContext } from "react";
 import { AuthContext, createProfile, checkLoginStatus } from "../Auth";
 
@@ -221,6 +222,7 @@ const CreateProfile = ({ email, publicAddress }) => {
             <div className="card card-body">
               <img
                 src={profile.photo ? profile.photo : "images/placeholder.png"}
+                alt="profile photo"
               />
               <input
                 type="file"

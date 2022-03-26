@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect, useReducer, useMemo } from "react";
@@ -7,6 +8,8 @@ import WavesSVG from "../../components/WavesSVG";
 
 export default function Profile({ profile }) {
   const { email, phone, firstName, lastName, dob, bvn, ssn, photo } = profile;
+
+  const { signOut } = useContext(AuthContext);
 
   return (
     <>
@@ -192,7 +195,10 @@ export default function Profile({ profile }) {
         Contact Support
       </div>
 
-      <div className="btn btn-full mx-3 gradient-red shadow-bg shadow-bg-xs">
+      <div
+        onClick={() => logout(signOut)}
+        className="btn btn-full mx-3 gradient-red shadow-bg shadow-bg-xs"
+      >
         Logout
       </div>
     </>
