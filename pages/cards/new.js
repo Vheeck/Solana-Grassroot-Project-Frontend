@@ -63,7 +63,7 @@ export default function NewCard() {
 
     Request.post("/cards/new", data).then((result) => {
       alert("Card created successfully!");
-      console.log(result);
+      // console.log(result);
       setIsLoading(false);
       router.push("/cards");
     });

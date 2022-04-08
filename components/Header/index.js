@@ -3,7 +3,7 @@ const Header = () => (
     <div className="page-title d-flex">
       <div className="align-self-center me-auto">
         <p className="color-white opacity-50 header-date"></p>
-        <h1 className="color-white">Grassroots</h1>
+        <h1 className="color-white">Credit Sense</h1>
       </div>
       <div className="align-self-center ms-auto">
         {/* <a

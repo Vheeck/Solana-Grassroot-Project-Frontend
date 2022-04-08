@@ -42,6 +42,8 @@ export default function Profile({ profile }) {
           src={photo}
           alt="img"
           width="180"
+          height="180"
+          style={{ objectFit: "cover" }}
           className="mx-auto rounded-circle mt-n5 shadow-l"
         />
         <h1 className="color-theme text-center font-30 pt-3 mb-0">

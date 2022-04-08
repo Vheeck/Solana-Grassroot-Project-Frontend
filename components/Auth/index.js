@@ -74,7 +74,7 @@ const createProfile = async (profile) => {
   // if (isLoggedIn) {
   // const { email, publicAddress } = await magic().user.getMetadata();
   const result = await Request.post("/profile", profile);
-  console.log(result);
+  // console.log(result);
   return result;
   // }
 };
@@ -84,7 +84,7 @@ const editProfile = async (profile) => {
   // if (isLoggedIn) {
   // const { email, publicAddress } = await magic().user.getMetadata();
   const result = await Request.post("/profile/edit", profile);
-  console.log(result);
+  // console.log(result);
   return result;
   // }
 };

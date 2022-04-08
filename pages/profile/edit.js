@@ -196,7 +196,7 @@ export default function EditProfile(props) {
                   const reader = new FileReader();
                   reader.readAsDataURL(image);
                   reader.onload = (event) => {
-                    console.log(event.target.result);
+                    // console.log(event.target.result);
                     setProfile({ ...profile, photo: event.target.result });
                   };
                 }}

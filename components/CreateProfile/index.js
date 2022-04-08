@@ -55,7 +55,7 @@ const CreateProfile = ({ email, publicAddress }) => {
         <div className="page-title d-flex">
           <div className="align-self-center me-auto">
             <p className="color-white opacity-50 header-date"></p>
-            <h1 className="color-white">Grassroots</h1>
+            <h1 className="color-white">Credit Sense</h1>
           </div>
           <div className="align-self-center ms-auto">
             <a
@@ -234,13 +234,15 @@ const CreateProfile = ({ email, publicAddress }) => {
                   const reader = new FileReader();
                   reader.readAsDataURL(image);
                   reader.onload = (event) => {
-                    console.log(event.target.result);
+                    // console.log(event.target.result);
                     setProfile({ ...profile, photo: event.target.result });
                   };
                 }}
               />
               <button
-                onClick={() => document.querySelector("input[type='file']").click()}
+                onClick={() =>
+                  document.querySelector("input[type='file']").click()
+                }
                 className="btn btn-full gradient-highlight shadow-bg shadow-bg-s mt-4"
                 style={{
                   width: "100%",
@@ -250,7 +252,6 @@ const CreateProfile = ({ email, publicAddress }) => {
               </button>
             </div>
           </div>
-
 
           {/* <h4>Upload Card Image</h4>
           <p className="mb-0">
@@ -284,7 +285,7 @@ const CreateProfile = ({ email, publicAddress }) => {
               className="form-check-input"
               type="checkbox"
               name="type"
-              value=""
+              defaultValue=""
               id="c2a"
             />
             <label className="form-check-label font-12" htmlFor="c2a">

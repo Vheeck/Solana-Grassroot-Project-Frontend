@@ -21,7 +21,7 @@ const sendRequest = (endpoint, type, body, headers) => {
     init.body = JSON.stringify(body);
   }
 
-  console.log("custom url", custom, init, backendServerAddress, endpoint);
+  // console.log("custom url", custom, init, backendServerAddress, endpoint);
 
   return fetch(`${custom ? "" : backendServerAddress}${endpoint}`, init);
 };

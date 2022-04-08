@@ -10,7 +10,7 @@ export default function Invest({ profile }) {
 
   const getWallet = async () => {
     const result = await Request.get("/wallet");
-    console.log(result);
+    // console.log(result);
     setWallet(result.data);
   };
 

@@ -27,7 +27,14 @@ const PageHeader = ({
           data-bs-toggle="dropdown"
           className="icon gradient-blue shadow-bg shadow-bg-s rounded-m"
         >
-          <img src={photo} width="45" className="rounded-m" alt="img" />
+          <img
+            src={photo}
+            width="45"
+            height="45"
+            style={{ objectFit: "cover" }}
+            className="rounded-m"
+            alt="img"
+          />
         </a>
         <div className="dropdown-menu">
           <div className="card card-style shadow-m mt-1 me-1">

@@ -74,7 +74,7 @@ function MyApp({ Component, pageProps }) {
   useEffect(() => {
     setTimeout(async () => {
       const data = await checkLoginStatus();
-      console.log("data", data);
+      // console.log("data", data);
       dispatch({
         type: "RETRIEVE_TOKEN",
         ...data,
@@ -96,23 +96,23 @@ function MyApp({ Component, pageProps }) {
     // );
   }, []);
 
-  useEffect(() => {
-    console.log(loginState);
-  }, [loginState]);
+  // useEffect(() => {
+  //   console.log(loginState);
+  // }, [loginState]);
 
   const { publicAddress, email, profile } = loginState;
 
   return (
     <>
       <Head>
-        <title>Grassroots</title>
-        <link rel="stylesheet" type="text/css" href="styles/bootstrap.css" />
+        <title>Credit Sense</title>
+        <link rel="stylesheet" type="text/css" href="/styles/bootstrap.css" />
         <link
           rel="stylesheet"
           type="text/css"
-          href="fonts/bootstrap-icons.css"
+          href="/fonts/bootstrap-icons.css"
         />
-        <link rel="stylesheet" type="text/css" href="styles/style.css" />
+        <link rel="stylesheet" type="text/css" href="/styles/style.css" />
         {/* <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
           href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@500;600;700&family=Roboto:wght@400;500;700&display=swap"
@@ -305,8 +305,8 @@ const MainTheme = ({ children }) => (
             >
               Default Account
             </label>
-            <select className="form-select rounded-xs" id="c6a">
-              <option value="0" selected>
+            <select className="form-select rounded-xs" id="c6a" defaultValue="0">
+              <option value="0">
                 Main Account
               </option>
               <option value="01">Savings Account</option>
@@ -320,7 +320,7 @@ const MainTheme = ({ children }) => (
               type="tel"
               className="form-control rounded-xs"
               id="c21"
-              value="+1 234 567 809"
+              defaultValue="+1 234 567 809"
             />
             <label
               htmlFor="c21"
@@ -335,7 +335,7 @@ const MainTheme = ({ children }) => (
               type="password"
               className="form-control rounded-xs"
               id="c2"
-              value="Old Password"
+              defaultValue="Old Password"
             />
             <label
               htmlFor="c2"
@@ -350,7 +350,7 @@ const MainTheme = ({ children }) => (
               type="password"
               className="form-control rounded-xs"
               id="c3"
-              value="New Password"
+              defaultValue="New Password"
             />
             <label
               htmlFor="c3"

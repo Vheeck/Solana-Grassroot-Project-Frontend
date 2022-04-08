@@ -18,7 +18,7 @@ export default function Payment() {
     let paymentStatus;
 
     // Connecting to devnet for this example
-    console.log("1. ✅ Establish connection to the network");
+    // console.log("1. ✅ Establish connection to the network");
     const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
 
     // -- snippet -- //
@@ -32,7 +32,7 @@ export default function Payment() {
      * and will be used to find and validate the payment in the future.
      *
      */
-    console.log("2. 🛍 Simulate a customer checkout \n");
+    // console.log("2. 🛍 Simulate a customer checkout \n");
     const recipient = new PublicKey(
       "27j5uCqQQvRWUpkPTKow3Nwf2gvznF5FGVmt4ckF26FV"
     );
@@ -49,7 +49,7 @@ export default function Payment() {
      * Solana Pay uses a standard URL scheme across wallets for native SOL and SPL Token payments.
      * Several parameters are encoded within the link representing an intent to collect payment from a customer.
      */
-    console.log("3. 💰 Create a payment request link \n");
+    // console.log("3. 💰 Create a payment request link \n");
     const url = encodeURL({
       recipient,
       amount,
@@ -58,12 +58,12 @@ export default function Payment() {
       message,
       memo,
     });
-    console.log("url", url);
+    // console.log("url", url);
 
     /**
      * Simulate a checkout experience with an SPL token
      */
-    console.log("2. 🛍 Simulate a customer checkout \n");
+    // console.log("2. 🛍 Simulate a customer checkout \n");
     // const splToken = new PublicKey(
     //   "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
     // );
@@ -74,7 +74,7 @@ export default function Payment() {
      * Solana Pay uses a standard URL scheme across wallets for native SOL and SPL Token payments.
      * Several parameters are encoded within the link representing an intent to collect payment from a customer.
      */
-    console.log("3. 💰 Create a payment request link \n");
+    // console.log("3. 💰 Create a payment request link \n");
     // const url = encodeURL({
     //   recipient,
     //   amount,

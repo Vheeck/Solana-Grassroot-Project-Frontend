@@ -22,7 +22,7 @@ export default function Cards({ profile }) {
   const getCards = async () => {
     setIsLoading(true);
     const result = await Request.get("/cards");
-    console.log(result);
+    // console.log(result);
     setCards(result.data);
     setIsLoading(false);
   };

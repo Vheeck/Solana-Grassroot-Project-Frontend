@@ -28,14 +28,14 @@ export default function Home({ profile }) {
 
   const getWallet = async () => {
     const result = await Request.get("/wallet");
-    console.log(result);
+    // console.log(result);
     setWallet(result.data);
   };
 
   const getCards = async () => {
     setIsLoading(true);
     const result = await Request.get("/cards");
-    console.log(result);
+    // console.log(result);
     setCards(result.data);
     setIsLoading(false);
   };
