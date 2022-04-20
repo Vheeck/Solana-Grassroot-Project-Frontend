@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 
-import PageHeader from "../../components/PageHeader";
+import PageHeaderWithBack from "../../../components/PageHeaderWithBack";
 
 export const solToNaira = 24000;
 export const minSol = 0.01;
@@ -13,13 +13,13 @@ export default function FundWallet({ profile }) {
 
   return (
     <>
-      <PageHeader title="Fund Wallet" profile={profile} />
+      <PageHeaderWithBack title="Onramper" backLink="/wallet/fund" />
       <div className="card card-style">
         <div className="content">
           <div
             style={{
               width: "calc(100vw - 60px)",
-              height: "calc(100vh - 105px)"
+              height: "calc(100vh - 105px)",
             }}
           >
             <OnramperWidget

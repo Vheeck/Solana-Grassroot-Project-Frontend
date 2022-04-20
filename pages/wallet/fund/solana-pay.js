@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { createQR } from "@solana/pay";
-import { formatMoney } from "../../components/FormatMoney";
+import { formatMoney } from "../../../components/FormatMoney";
 import { useRouter } from "next/router";
-import Request from "../../components/Request";
-import PageHeader from "../../components/PageHeader";
+import Request from "../../../components/Request";
+import PageHeaderWithBack from "../../../components/PageHeaderWithBack";
 
 export const solToNaira = 24000;
 export const minSol = 0.01;
@@ -33,7 +33,7 @@ export default function FundWallet({ profile }) {
       // console.log(amount);
       const result = await Request.post("/wallet/fund", { amount });
       localStorage.setItem("ongoingPayment", JSON.stringify(result.data));
-      router.push("/wallet/confirm-payment");
+      router.push("/wallet/fund/confirm-payment");
     } else {
       setError(
         `The minimum payable amount is ${minSol}, which is ${formatMoney(
@@ -47,7 +47,7 @@ export default function FundWallet({ profile }) {
 
   return (
     <>
-      <PageHeader title="Fund Wallet" profile={profile} />
+      <PageHeaderWithBack title="Solana Pay" backLink="/wallet/fund" />
       <div className="card card-style">
         <div className="content">
           <div className="form-custom form-label form-border form-icon mb-3 bg-transparent">

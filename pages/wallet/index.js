@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Request from "../../components/Request";
 import { formatMoney } from "../../components/FormatMoney";
-import { solToNaira } from "./fund";
 import PageHeader from "../../components/PageHeader";
 import TransactionRow from "../../components/TransactionRow";
+import { solToNaira } from "./fund";
 
 export default function Wallet({ profile }) {
   const [wallet, setWallet] = useState(null);

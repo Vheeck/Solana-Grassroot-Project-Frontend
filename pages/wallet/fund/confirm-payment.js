@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { createQR } from "@solana/pay";
-import { formatMoney } from "../../components/FormatMoney";
-import Request from "../../components/Request";
+import { formatMoney } from "../../../components/FormatMoney";
+import Request from "../../../components/Request";
 import { useRouter } from "next/router";
-import { solToNaira } from "./fund";
-import PageHeader from "../../components/PageHeader";
+import PageHeader from "../../../components/PageHeader";
+import { solToNaira } from ".";
 
 export default function ConfirmPayment({ profile }) {
   const router = useRouter();
@@ -68,6 +68,12 @@ export default function ConfirmPayment({ profile }) {
 
     // append QR code to the element
     qrCode.append(element);
+
+    const svg = element.querySelector("svg");
+
+    svg.setAttribute("width", "100%");
+    svg.setAttribute("height", "100%");
+    svg.setAttribute("viewBox", "0 0 512 512");
   };
 
   return (
@@ -95,7 +101,7 @@ export default function ConfirmPayment({ profile }) {
       <div className="card card-style">
         <div className="content">
           <h3 className="text-center">Scan QR Code to make payment</h3>
-          <div style={{ width: "80vw" }} id="qr-code"></div>
+          <div style={{ width: "100%" }} id="qr-code"></div>
           <h3 className="text-center mt-3">OR</h3>
           <p className="text-center">Click the &apos;Pay&apos; button</p>
           <a href={url} target="_blank" className="mt-3" rel="noreferrer">
